@@ -3,8 +3,8 @@
 	src: url("/static/fonts/terminus.ttf");
 }
 
-html { 
-	background: url("/static/img/bg.png") no-repeat center center fixed; 
+html {
+	background: url("/static/img/bg.png") no-repeat center center fixed;
 	background-size: cover;
 	image-rendering: pixelated;
 }
@@ -86,17 +86,17 @@ body {
 	.header {
 		padding: 8px;
 	}
-	
+
 	.post .header {
 		padding: 8px;
 		width: auto;
 	}
-	
+
 	.post .content {
 		padding: 8px;
 		width: auto;
 	}
-	
+
 	.post .footer {
 		padding: 8px;
 		width: auto;

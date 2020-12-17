@@ -26,5 +26,19 @@
 		<div class="footer">
 			Автор: {{ post.author }} | Создан: {{ post.created_at }}
 		</div>
+        <div class="footer">
+            <form method="POST">
+                {% csrf_token %}
+                {{ comment_form.as_p }}
+                <button type="submit">Добавить комент</button>
+            </form>
+        </div>
+        {% if comments %}
+            <div class="content">
+                {% for comment in comments %}
+                    <ul>{{ comment.content }}</ul>
+                {% endfor %}
+            </div>
+        {% endif %}
 	</div>
 {% endblock content %}

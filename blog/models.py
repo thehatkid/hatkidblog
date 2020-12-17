@@ -15,9 +15,9 @@ class Post(models.Model):
         'auth.User',
         on_delete=models.CASCADE
     )
-    is_published=models.BooleanField(default=False)
-    created_at=models.DateTimeField(auto_now_add=True)
-    updated_at=models.DateTimeField(auto_now=True)
+    is_published = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     
     def get_absolute_url(self):
         return f"/post/{self.id}"
@@ -27,3 +27,9 @@ class Post(models.Model):
     
     class Meta:
         ordering = ['-created_at']
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    content = models.TextField()
