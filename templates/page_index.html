@@ -1,0 +1,36 @@
+{% extends 'tpl_base.html' %}
+
+{% block title %}
+	<title>hat_kid's Blog</title>
+{% endblock title %}
+
+{% block og %}
+	<meta property="og:title" content="hat_kid's Blog">
+	<meta property="og:type" content="website">
+{% endblock og %}
+
+{% block header %}
+	<div class="header">
+		<a href="{% url 'home' %}">hat_kid's Blog</a>
+	</div>
+{% endblock header %}
+
+{% block content %}
+	{% for post in object_list %}
+		{% if post.is_published %}
+			<div class="post">
+				<div class="title">
+					<a href="{{ post.get_absolute_url }}" title="Перейти к посту {{ post.title }}...">
+						{{ post.title }}
+					</a>
+				</div>
+				<div class="content">
+					{{ post.content }}
+				</div>
+				<div class="footer">
+					Автор: {{ post.author }} | Создан: {{ post.created_at }}
+				</div>
+			</div>
+		{% endif %}
+	{% endfor %}
+{% endblock content %}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		{% load static %}
+		{% block og %}
+		{% endblock og %}
+		<link href="{% static 'css/base.css' %}" rel="stylesheet">
+		<link href="{% static 'favicon.png' %}" rel="shortcut icon" type="image/png">
+		{% block title %}
+		{% endblock title %}
+	</head>
+	<body>
+		{% block header %}
+		{% endblock header %}
+		<div class="wrapper">
+			{% block content %}
+			{% endblock content %}
+		</div>
+	</body>
+</html>

@@ -1,0 +1,30 @@
+{% extends 'tpl_base.html' %}
+
+{% block title %}
+	<title>{{ post.title }} | hat_kid's Blog</title>
+{% endblock title %}
+
+{% block og %}
+	<meta property="og:title" content="hat_kid's Blog | {{ post.title }}">
+	<meta property="og:type" content="website">
+{% endblock og %}
+
+{% block header %}
+	<div class="header">
+		<a href="{% url 'home' %}">hat_kid's Blog</a> &#8250; {{ post.title }}
+	</div>
+{% endblock header %}
+
+{% block content %}
+	<div class="post">
+		<div class="title">
+			{{ post.title }}
+		</div>
+		<div class="content">
+			{{ post.content }}
+		</div>
+		<div class="footer">
+			Автор: {{ post.author }} | Создан: {{ post.created_at }}
+		</div>
+	</div>
+{% endblock content %}
