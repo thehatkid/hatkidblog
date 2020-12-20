@@ -1,36 +1,41 @@
 {% extends 'tpl_base.html' %}
 
-{% block title %}
-	<title>hat_kid's Blog</title>
-{% endblock title %}
-
-{% block og %}
-	<meta property="og:title" content="hat_kid's Blog">
-	<meta property="og:type" content="website">
-{% endblock og %}
+{% block title %}<title>hat_kid's Blog</title>{% endblock title %}
+{% block og_title %}<meta name="og:title" content="hat_kid's Blog | Главное">{% endblock og_title %}
 
 {% block header %}
 	<div class="header">
 		<a href="{% url 'home' %}">hat_kid's Blog</a>
+		<div class="user">
+			{% if user.is_authenticated %}
+				{{ user.username }} | <a href="{% url 'logout' %}" title="Выход из аккаунта">Выход</a>
+			{% else %}
+				<a href="{% url 'login' %}" title="Вход в аккаунт">Вход</a>
+			{% endif %}
+		</div>
 	</div>
 {% endblock header %}
 
 {% block content %}
 	{% for post in object_list %}
 		{% if post.is_published %}
-			<div class="post">
+			<div class="container">
 				<div class="title">
-					<a href="{{ post.get_absolute_url }}" title="Перейти к посту {{ post.title }}...">
+					<a href="{{ post.get_absolute_url }}" title="Перейти к посту &quot;{{ post.title }}&quot;">
 						{{ post.title }}
 					</a>
 				</div>
-				<div class="content">
-					{{ post.content }}
-				</div>
+				<div class="content">{{ post.content | linebreaksbr }}</div>
 				<div class="footer">
-					Автор: {{ post.author }} | Создан: {{ post.created_at }}
+					Автор: {{ post.author }} | {{ post.created_at }}
 				</div>
 			</div>
 		{% endif %}
+	{% empty %}
+		<div class="container">
+			<div class="content">
+				<i>В блоге пока что нету постов... :_)</i>
+			</div>
+		</div>
 	{% endfor %}
 {% endblock content %}

@@ -1,44 +1,49 @@
 {% extends 'tpl_base.html' %}
 
-{% block title %}
-	<title>{{ post.title }} | hat_kid's Blog</title>
-{% endblock title %}
-
-{% block og %}
-	<meta property="og:title" content="hat_kid's Blog | {{ post.title }}">
-	<meta property="og:type" content="website">
-{% endblock og %}
+{% block title %}<title>{{ post.title }} | hat_kid's Blog</title>{% endblock title %}
+{% block og_title %}<meta name="og:title" content="hat_kid's Blog | {{ post.title }}">{% endblock og_title %}
 
 {% block header %}
 	<div class="header">
-		<a href="{% url 'home' %}">hat_kid's Blog</a> &#8250; {{ post.title }}
+		<a href="{% url 'home' %}">hat_kid's Blog</a>
+		<div class="subtitle">&#8250; {{ post.title }}</div>
+		<div class="user">
+			{% if user.is_authenticated %}
+				{{ user.username }} | <a href="{% url 'logout' %}" title="Выход из аккаунта">Выход</a>
+			{% else %}
+				<a href="{% url 'login' %}" title="Вход в аккаунт">Вход</a>
+			{% endif %}
+		</div>
 	</div>
 {% endblock header %}
 
 {% block content %}
-	<div class="post">
-		<div class="title">
-			{{ post.title }}
-		</div>
-		<div class="content">
-			{{ post.content }}
-		</div>
-		<div class="footer">
-			Автор: {{ post.author }} | Создан: {{ post.created_at }}
-		</div>
-        <div class="footer">
-            <form method="POST">
-                {% csrf_token %}
-                {{ comment_form.as_p }}
-                <button type="submit">Добавить комент</button>
-            </form>
-        </div>
-        {% if comments %}
-            <div class="content">
-                {% for comment in comments %}
-                    <ul>{{ comment.content }}</ul>
-                {% endfor %}
-            </div>
-        {% endif %}
+	<div class="container">
+		<div class="title">{{ post.title }}</div>
+		<div class="content">{{ post.content }}</div>
+		<div class="footer">Автор: {{ post.author }} | {{ post.created_at }}</div>
 	</div>
+	<div class="container">
+        <div class="comment_content">
+			{% if user.is_authenticated %}
+				<form method="POST">
+					{% csrf_token %}
+					<textarea required placeholder="Текст комментарий..." maxlength="500" rows="3" name="content"></textarea>
+					<button type="submit">Опубликовать комментарий</button>
+				</form>
+			{% else %}
+				<i>Для оставления комментария требуется авторизация в аккаунт.</i>
+			{% endif %}
+        </div>
+	</div>
+	{% for comment in comments %}
+		<div class="container">
+			<div class="comment_title">Комментарий от: {{ comment.author }} | {{ comment.created_at }}</div>
+			<div class="comment_content">{{ comment.content | linebreaksbr }}</div>
+		</div>
+	{% empty %}
+		<div class="container">
+			<div class="comment_content"><i>В этом посту пока нет комментариев... :_)</i></div>
+		</div>
+	{% endfor %}
 {% endblock content %}

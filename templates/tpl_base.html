@@ -1,22 +1,21 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ru">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		{% load static %}
-		{% block og %}
-		{% endblock og %}
-		<link href="{% static 'css/base.css' %}" rel="stylesheet">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="theme-color" content="#e02060">
+		{% block og_title %}{% endblock og_title %}
+		<meta name="og:site_name" content="hat_kid's Blog">
+		<meta name="og:type" content="website">
+		<meta name="og:locale" content="ru_RU">
+		<link href="{% static 'css/base.css' %}" rel="stylesheet" type="text/css">
 		<link href="{% static 'favicon.png' %}" rel="shortcut icon" type="image/png">
-		{% block title %}
-		{% endblock title %}
+		{% block title %}{% endblock title %}
 	</head>
 	<body>
-		{% block header %}
-		{% endblock header %}
-		<div class="wrapper">
-			{% block content %}
-			{% endblock content %}
-		</div>
+		{% block header %}{% endblock header %}
+		<div class="wrapper">{% block content %}{% endblock content %}</div>
 	</body>
 </html>

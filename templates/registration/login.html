@@ -1,0 +1,41 @@
+{% extends 'tpl_base.html' %}
+
+{% block title %}<title>Вход в аккаунт | hat_kid's Blog</title>{% endblock title %}
+{% block og_title %}<meta name="og:title" content="hat_kid's Blog | Вход в аккаунт">{% endblock og_title %}
+
+{% block header %}
+	<div class="header">
+		<a href="{% url 'home' %}">hat_kid's Blog</a> &#8250; Вход в аккаунт
+	</div>
+{% endblock header %}
+
+{% block content %}
+	<div class="container">
+		<div class="title">
+			Вход в аккаунт
+		</div>
+		<div class="content">
+			<form method="post">
+				{% csrf_token %}
+				<table class="auth">
+					<tr>
+						<td>Юзернейм:</td>
+						<td>{{ form.username }}</td>
+					</tr>
+					<tr>
+						<td>Пароль:</td>
+						<td>{{ form.password }}</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><button type="submit">Вход</button></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><a href="{% url 'signup' %}">Регистрация...</a></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+{% endblock content %}

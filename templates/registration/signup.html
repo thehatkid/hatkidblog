@@ -1,0 +1,48 @@
+{% extends 'tpl_base.html' %}
+
+{% block title %}<title>Регистрация | hat_kid's Blog</title>{% endblock title %}
+{% block og_title %}<meta name="og:title" content="hat_kid's Blog | Регистрация">{% endblock og_title %}
+
+{% block header %}
+	<div class="header">
+		<a href="{% url 'home' %}">hat_kid's Blog</a> &#8250; Регистрация
+		<div class="user">
+			{% if user.is_authenticated %}
+				{{ user.username }} | <a href="{% url 'logout' %}" title="Выход из аккаунта">Выход</a>
+			{% else %}
+				<a href="{% url 'login' %}" title="Вход в аккаунт">Вход</a>
+			{% endif %}
+		</div>
+	</div>
+{% endblock header %}
+
+{% block content %}
+	<div class="container">
+		<div class="title">
+			Регистрация
+		</div>
+		<div class="content">
+			<form method="POST">
+				{% csrf_token %}
+				<table class="auth">
+					<tr>
+						<td>Юзернейм:</td>
+						<td>{{ form.username }}</td>
+					</tr>
+					<tr>
+						<td>Пароль:</td>
+						<td>{{ form.password1 }}</td>
+					</tr>
+					<tr>
+						<td>Повтор:</td>
+						<td>{{ form.password2 }}</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><button type="submit">Зарегистрировать</button></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+{% endblock content %}

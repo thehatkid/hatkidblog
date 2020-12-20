@@ -4,7 +4,7 @@
 }
 
 html {
-	background: url("/static/img/bg.png") no-repeat center center fixed;
+	background: #200510 url("/static/img/bg.png") no-repeat center center fixed;
 	background-size: cover;
 	image-rendering: pixelated;
 }
@@ -12,13 +12,36 @@ html {
 body {
 	margin: 0;
 	font-family: Terminus;
+	image-rendering: auto;
+}
+
+textarea {
+	border: 2px solid #333333;
+	padding: 8px;
+	background: rgba(32, 32, 32, 0.5);
+	color: #cccccc;
+}
+
+input {
+	border: 2px solid #333333;
+	padding: 4px;
+	background: rgba(32, 32, 32, 0.5);
+	color: #cccccc;
+}
+
+button {
+	border: 0;
+	border-radius: 32px;
+	padding: 4px 16px;
+	background: linear-gradient(#ea2a60 50%, #801020 100%);
+	color: #eeeeee;
 }
 
 .header {
-	padding: 16px 128px;
+	padding: 16px 10%;
 	border-bottom: 4px solid rgba(16, 16, 16, 0.8);
 	background: rgba(32, 32, 32, 0.8);
-	color: #cccccc;
+	color: #aaaaaa;
 	font-size: 26px;
 }
 
@@ -26,78 +49,163 @@ body {
 	color: #ff8899;
 	text-decoration: none;
 }
+
 .header a:hover {
 	color: #ffffff;
 	text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.8);
 }
 
-.post {
-	margin: 32px 0;
-	text-shadow: 0px 0px 2px rgba(128, 128, 128, 1.0);
+.header .subtitle {
+	display: inline-block;
 }
 
-.post .title {
+.header .user {
+	display: inline-block;
+	float: right;
+}
+
+.container {
+	margin: 32px 0;
+}
+
+.container .title {
 	margin-left: auto;
 	margin-right: auto;
 	padding: 8px 16px;
-	border: 2px solid #4a0a20;
-	background: linear-gradient(180deg, rgba(234, 42, 96, 1.0) 50%, rgba(170, 16, 64, 1.0) 100%);
+	border-top: 2px solid #401020;
+	border-left: 2px solid #401020;
+	border-right: 2px solid #401020;
+	background: linear-gradient(#ea2a60 50%, #aa1040 100%);
 	color: #dddddd;
 	font-size: 26px;
 	text-shadow: 0px 0px 2px rgba(128, 128, 128, 1.0);
 	width: 764px;
 }
 
-.post .title a {
+.container .title a {
 	color: #dddddd;
 	text-decoration: none;
 }
 
-.post .title a:hover {
+.container .title a:hover {
 	color: #ffffff;
-	text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.8);
+	text-shadow: 0px 0px 4px #ffffff;
 }
 
-.post .content {
+.container .content {
 	margin-left: auto;
 	margin-right: auto;
 	padding: 16px 48px;
-	border-left: 2px solid #20101f;
-	border-right: 2px solid #20101f;
-	background: rgba(64, 64, 64, 0.8);
+	border: 2px solid #20101f;
+	background: rgba(48, 32, 32, 0.8);
 	color: #eeeeee;
 	font-size: 21px;
 	width: 700px;
 }
 
-.post .footer {
+.container .content a {
+	color: #eeaaaa;
+}
+
+.container .content a:hover {
+	color: #ffffff;
+	text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.8);
+}
+
+.container .footer {
 	margin-left: auto;
 	margin-right: auto;
 	padding: 8px 16px;
-	border: 2px solid #4a0a20;
-	background: linear-gradient(180deg, rgba(186, 32, 86, 1.0) 50%, rgba(164, 8, 48, 1.0) 100%);
+	border-bottom: 2px solid #401020;
+	border-left: 2px solid #401020;
+	border-right: 2px solid #401020;
+	background: linear-gradient(#901040 50%, #801020 100%);
 	color: #eeeeee;
 	font-size: 14px;
 	text-shadow: 0px 0px 2px rgba(128, 128, 128, 1.0);
 	width: 764px;
 }
 
+.container .comment_title {
+	margin-left: auto;
+	margin-right: auto;
+	padding: 8px 16px;
+	border-top: 2px solid #401020;
+	border-left: 2px solid #401020;
+	border-right: 2px solid #401020;
+	background: linear-gradient(#901040 50%, #801020 100%);
+	color: #dddddd;
+	font-size: 14px;
+	text-shadow: 0px 0px 2px rgba(128, 128, 128, 1.0);
+	width: 764px;
+}
+
+.container .comment_content {
+	margin-left: auto;
+	margin-right: auto;
+	padding: 16px;
+	border: 2px solid #20101f;
+	background: rgba(48, 32, 32, 0.8);
+	color: #eeeeee;
+	font-size: 17px;
+	width: 764px;
+}
+
+.container .comment_content textarea {
+	box-sizing: border-box;
+	width: 100%;
+	resize: none;
+	margin-bottom: 16px;
+}
+
+.container .comment_content button {
+	width: 100%;
+}
+
+.auth table {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.auth td {
+	width: 150px;
+}
+
+.auth td button {
+	width: 100%;
+}
+
 @media (max-width: 799px) {
 	.header {
-		padding: 8px;
+		padding: 8px 24px;
 	}
-
-	.post .header {
+	
+	.header .subtitle {
+		display: none;
+	}
+	
+	.container .title {
 		padding: 8px;
 		width: auto;
 	}
-
-	.post .content {
+	
+	.container .content {
 		padding: 8px;
 		width: auto;
 	}
-
-	.post .footer {
+	
+	.container .footer {
+		padding: 8px;
+		width: auto;
+	}
+	
+	.container .comment_title {
+		padding: 8px;
+		width: auto;
+	}
+	
+	.container .comment_content {
 		padding: 8px;
 		width: auto;
 	}
