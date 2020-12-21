@@ -22,20 +22,31 @@
 			Регистрация
 		</div>
 		<div class="content">
+			{% if form.errors %}
+				<div class="error">
+					{{ form.password2.errors }}
+				</div>
+			{% endif %}
 			<form method="POST">
 				{% csrf_token %}
 				<table class="auth">
 					<tr>
 						<td>Юзернейм:</td>
-						<td>{{ form.username }}</td>
+						<td>
+							<input required autofocus type="text" name="username" maxlength="32" autocomplete="username">
+						</td>
 					</tr>
 					<tr>
 						<td>Пароль:</td>
-						<td>{{ form.password1 }}</td>
+						<td>
+							<input required type="password" name="password1" maxlength="64" autocomplete="new-password">
+						</td>
 					</tr>
 					<tr>
 						<td>Повтор:</td>
-						<td>{{ form.password2 }}</td>
+						<td>
+							<input required type="password" name="password2" maxlength="64" autocomplete="new-password">
+						</td>
 					</tr>
 					<tr>
 						<td></td>

@@ -15,16 +15,27 @@
 			Вход в аккаунт
 		</div>
 		<div class="content">
+			{% if form.errors %}
+				<div class="error">
+					Пожалуйста, введите правильные юзернейм и пароль.
+					<br>
+					Оба поля могут быть чувствительны к регистру.
+				</div>
+			{% endif %}
 			<form method="post">
 				{% csrf_token %}
 				<table class="auth">
 					<tr>
 						<td>Юзернейм:</td>
-						<td>{{ form.username }}</td>
+						<td>
+							<input required autofocus type="text" name="username" maxlength="32" autocomplete="username">
+						</td>
 					</tr>
 					<tr>
 						<td>Пароль:</td>
-						<td>{{ form.password }}</td>
+						<td>
+							<input required type="password" name="password" maxlength="32" autocomplete="current-password">
+						</td>
 					</tr>
 					<tr>
 						<td></td>
