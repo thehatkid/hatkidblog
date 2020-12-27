@@ -21,13 +21,13 @@
 		{% if post.is_published %}
 			<div class="container">
 				<div class="title">
-					<a href="{{ post.get_absolute_url }}" title="Перейти к посту &quot;{{ post.title }}&quot;">
+					<a href="{{ post.get_post_url }}" title="Перейти к посту &quot;{{ post.title }}&quot;">
 						{{ post.title }}
 					</a>
 				</div>
 				<div class="content">{{ post.content | linebreaksbr }}</div>
 				<div class="footer">
-					Автор: {{ post.author }} | {{ post.created_at }}
+					Автор: {{ post.author }} | {{ post.created_at }} | Комментов: {{ post.get_comments_count }}
 				</div>
 			</div>
 		{% endif %}

@@ -34,8 +34,11 @@ class Post(models.Model):
     def __str__(self):
         return self.title
     
-    def get_absolute_url(self):
+    def get_post_url(self):
         return f"/post/{self.id}/"
+    
+    def get_comments_count(self):
+        return Comment.objects.filter(post=self).count()
     
     class Meta:
         verbose_name = "Пост"
